@@ -3,4 +3,30 @@
 {% block content %}
 <!-- add some content-->       
 <p> hi </p>
+<table class="table table-dark table-striped" width="75%", )
+    <thead>
+        <tr>
+          <th scope="col">name</th>
+          <th scope="col">summary</th>
+          <th scope="col">flag</th>
+          <th scope="col">points</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in challenges %}
+            <tr>
+
+                <td>{{i.name}}</td>
+                <td>{{i.summary}}</td>
+                <td>{{i.flag_value}}</td>
+                <td>{{i.points}}</td>
+
+            </tr>
+        {% endfor %} 
+      </tbody>   
+
+
+
+
+</table>
 {% endblock %}
