@@ -14,3 +14,18 @@ def challenges(request):
     return render(request, 'challenges.html',{
         'challenges': challenges,
     })
+
+def challengesform(request):
+    if request.method == 'POST':
+        form=challengesform(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'challengesform.html', {'form':form, 'success': True})
+
+def participants(request):
+    participants=Participant.objects.all()
+
+
+    return render(request, 'participant.html',{
+        'participants': participants,
+    })
