@@ -15,7 +15,12 @@
             <tr>
 
                 <td>{{i.user}}</td>
-                <td>{{i.flags_solved}}</td>
+                <td>{% for flag in i.flags_solved.all %}
+                        {{flag.name}} {% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                    {% endfor %}
+
+                </td>
                 <td>{{i.total_points}}</td>
 
             </tr>

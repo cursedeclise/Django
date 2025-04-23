@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import *
 from django.contrib import messages
 
+from .forms import *
 # Create your views here.
 def home(request):
     return render(request, 'index.html')
@@ -18,10 +19,14 @@ def challenges(request):
 
 def challengesform(request):
     if request.method == 'POST':
-        form=challengesform(request.POST)
+        form=ChallengeForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'challengesform.html', {'form':form, 'success': True})
+            messages.success(request, f"Challenge Submitted!")
+            return render(request, 'challengeform.html', {'form':form, 'success': True})
+    else:
+        form = ChallengeForm()
+    return render(request, 'challengeform.html', {'form':form})
 
 
 def participants(request):
@@ -30,4 +35,4 @@ def participants(request):
 
     return render(request, 'participant.html',{
         'participants': participants,
-    })
+    }) 
