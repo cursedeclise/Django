@@ -2,31 +2,45 @@
 
 {% block content %}
 <!-- add some content-->       
-<p> hi </p>
-<table class="table table-dark table-striped" width="75%", )
-    <thead>
-        <tr>
-          <th scope="col">name</th>
-          <th scope="col">summary</th>
-          <th scope="col">flag</th>
-          <th scope="col">points</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for i in challenges %}
-            <tr>
 
-                <td>{{i.name}}</td>
-                <td>{{i.summary}}</td>
-                <td>{{i.flag_value}}</td>
-                <td>{{i.points}}</td>
+<CenteR>
+<div class="card shadow" style="text-align:left;width: 75%">
+    <div class="card-body">
+<div class="card-body">
+    <center><h2>Challenges</h2>
+        
+    </centeR>
+    <hr>
 
-            </tr>
-        {% endfor %} 
-      </tbody>   
+<div class="row">
+    {% for challenge in challenges %}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow" style="border: 0px;">
+                <div class="card-body" style="text-align:center; background-color:#6D6D6E; color:white;border-radius: 20px 20px 20px 20px;">
+                  
+                    <h5 class="card-title">
+                        {{ challenge.name }}<br><h6>({{challenge.points}}pts)<h6>
+
+                            {% if challenge.id in solved_challenge_ids %}
+                            <div class="ribbon-2">
+                                <span style="color: white;">Solved ✔</span>
+                            </div>
+                            {% endif %}
+
+                        <hr>
+                        <p class="card-text" style="color:yellow;">{{ challenge.category}}</p>
+                    </h5>
+                    <p class="card-text" style="color:yellow;">{{ challenge.summary }}</p>
+                    <a href="{% url 'challenge_detail' challenge.id %}" class="btn btn-primary">View Challenge</a>
+                </div>
+
+            </div>
+        </div>
+    {% endfor %}
+</div>
+</div>
+</div>
+</div>
 
 
-
-
-</table>
 {% endblock %}
